@@ -4,82 +4,8 @@ This application provides a user-friendly interface for interacting with documen
 
 __Architecture Diagram (Textual Representation):__
 
-```javascript
-+---------------------+
-|      User (Browser) |
-+----------+----------+
-           |
-           | (Input: PDF/URL, Question)
-           v
-+----------+----------+
-|   Streamlit Web App |
-| (app.py - UI Layer) |
-+----------+----------+
-           |
-           | 1. Source Selection & Input
-           v
-+----------+----------+    +---------------------+
-|  Text Extraction    |    |  Text Extraction    |
-|  (PDF - PyPDF2)     |<---|  (URL - Requests,   |
-+----------+----------+    |   BeautifulSoup)    |
-           |                +---------------------+
-           | 2. Extracted Text
-           v
-+----------+----------+
-|  Text Chunking      |
-| (RecursiveCharacter |
-|    TextSplitter)    |
-+----------+----------+
-           |
-           | 3. Text Chunks
-           v
-+----------+----------+
-|  Embedding Generation |
-| (HuggingFaceEmbeddings|
-|  - all-MiniLM-L6-v2) |
-+----------+----------+
-           |
-           | 4. Embeddings
-           v
-+----------+----------+
-|  Vector Store       |
-|    (Chroma DB)      |
-+----------+----------+
-           |
-           | 5. Similarity Search (User Question)
-           v
-+----------+----------+
-|  Retrieved Documents |
-+----------+----------+
-           |
-           | 6. Context + Question
-           v
-+----------+----------+
-|  QA Chain           |
-| (LangChain)         |
-+----------+----------+
-           |
-           | 7. Query to LLM
-           v
-+----------+----------+
-|  Language Model     |
-| (HuggingFacePipeline|
-|  - Flan-T5-small)   |
-+----------+----------+
-           |
-           | 8. Generated Answer
-           v
-+----------+----------+
-|   Streamlit Web App |
-| (app.py - Output)   |
-+----------+----------+
-           |
-           | (Output: Answer)
-           v
-+----------+----------+
-|      User (Browser) |
-+---------------------+
-```
+<img width="4642" height="1209" alt="image" src="https://github.com/user-attachments/assets/9e13241f-d16e-49d9-a20b-130f26988eda" />
+
 
 __Explanation of the Diagram:__
 
